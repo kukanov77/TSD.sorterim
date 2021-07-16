@@ -119,7 +119,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
         valuesRepository.clearPlace();
         msg.say("Сканируй стрейч", R.drawable.box);
         msg.setTitle("Расстановка");
-        scanChain.setScanKeys(BAGE, CMD_ARRANGE);
+        scanUse.setScanKeys(BAGE, CMD_ARRANGE);
     };
     // ----------------------------------------------------------------------------------------
     // --- расстановка - стрейч - адрес
@@ -152,7 +152,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
                             } else {
                                 msg.say(String.format("Уложен на адрес\n%s", valuesRepository.getPlace()),"Сканируй стрейч", R.drawable.box);
                                 valuesRepository.clearPlace();
-                                scanChain.setScanKeys(BAGE, CMD_ARRANGE);
+                                scanUse.setScanKeys(BAGE, CMD_ARRANGE);
                             }
                           }
                     );
@@ -177,7 +177,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
                             if (is_error == 0) {
                                 valuesRepository.clearPlace();
                                 msg.say("OK","Сканируй стрейч", R.drawable.box);
-                                scanChain.setScanKeys(BAGE, CMD_ARRANGE);
+                                scanUse.setScanKeys(BAGE, CMD_ARRANGE);
                             } else {
                                 msg.alert("Ошибка снятия\nПопробуйте еще раз!", String.format("Сканируй адрес\n%s", valuesRepository.getPlace()));
                             }
@@ -221,7 +221,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
                         int is_error = j.getInt("1");
                         if (is_error == 0) {
                             valuesRepository.clearPlace();
-                            scanChain.setScanKeys(BAGE, CMD_GET);
+                            scanUse.setScanKeys(BAGE, CMD_GET);
                             msg.say("OK");
                             new Handler().postDelayed(() -> cmdGet.run(), 100);
                         } else {
@@ -240,7 +240,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
     // --- снятие - отмена
     public Runnable cmdGetCancel = () -> {
         valuesRepository.clearPlace();
-        scanChain.setScanKeys(BAGE, CMD_GET);
+        scanUse.setScanKeys(BAGE, CMD_GET);
         cmdGet.run();
     };
     // ----------------------------------------------------------------------------------------
@@ -259,7 +259,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
                     JSONObject j = jsons.getJSONObject(0);
                     int is_error = j.getInt("1");
                     if (is_error == 0) {
-                        scanChain.setScanKeys(BAGE, CMD_GET_ONE);
+                        scanUse.setScanKeys(BAGE, CMD_GET_ONE);
                         msg.say("OK!\nЯщик снят", "Сканируй адрес");
                     } else {
                         msg.alert("Ошибка снятия\nПопробуйте еще раз!", "Сканируй адрес");
@@ -275,7 +275,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
     public Runnable finish = () -> {
         msg.say("Сканируй команду", R.drawable.command);
         msg.setTitle("Выбор команды");
-        scanChain.setScanKeys(BAGE);
+        scanUse.setScanKeys(BAGE);
     };
 
     public Runnable finishFinish = () -> {
@@ -283,7 +283,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
         valuesRepository.setPersonName("");
         msg.say("Сканируй бейдж", R.drawable.bage);
         msg.setTitle("Авторизация");
-        scanChain.clearScanKey();
+        scanUse.clearScanKey();
     };
 
     // ----------------------------------------------------------------------------------------
@@ -293,7 +293,7 @@ public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
                 jsons -> {
                     StringHelper last_say = msg.getLastSay();
                     msg.say(String.format("Простой отмечен\nдля снятия\n%s", last_say.get().toString()), R.drawable.smoke);
-                    scanChain.backScanKey();
+                    scanUse.backScanKey();
                 }
         );
 

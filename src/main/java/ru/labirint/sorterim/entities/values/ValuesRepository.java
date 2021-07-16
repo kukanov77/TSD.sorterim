@@ -1,17 +1,13 @@
 package ru.labirint.sorterim.entities.values;
 
-import io.reactivex.Observable;
-import io.reactivex.subjects.BehaviorSubject;
 import ru.labirint.core.entities.Barcode;
 import ru.labirint.sorterim.entities.PersonInfo;
 import ru.labirint.sorterim.entities.Place;
 import ru.labirint.sorterim.entities.PlaceResponse;
-import ru.labirint.sorterim.entities.values.Values;
-import ru.labirint.sorterim.entities.values.ValuesDao;
 
-public class ValuesRepository extends ru.labirint.core_tsd.entities.values.ValuesRepository {
+public class ValuesRepository extends ru.labirint.core.entities.ValuesRepository {
 
-    BehaviorSubject<String> personText = BehaviorSubject.createDefault("");
+    //BehaviorSubject<String> personText = BehaviorSubject.createDefault("");
     Values values;
     ValuesDao valuesDao;
     Place place;
@@ -22,19 +18,19 @@ public class ValuesRepository extends ru.labirint.core_tsd.entities.values.Value
         values = valuesDao.getValues();
     }
 
-    public Observable<String> getPersonText(){return personText;}
+    //public Observable<String> getPersonText(){return personText;}
 
-    public void setPersonText(){
-        personText.onNext(values.getName());
-    }
+//    public void setPersonText(){
+//        personText.onNext(values.getName());
+//    }
 
-    public void setIdPerson(int idPerson) {
-        values.setIdPerson(idPerson);
-    }
+//    public void setIdPerson(int idPerson) {
+//        values.setIdPerson(idPerson);
+//    }
 
-    public int getIdPerson() {
-        return values.getIdPerson();
-    }
+//    public int getIdPerson() {
+//        return values.getIdPerson();
+//    }
 
     public void setPersonName(String name){
         values.setName(name);
@@ -45,6 +41,7 @@ public class ValuesRepository extends ru.labirint.core_tsd.entities.values.Value
     public void setPersonInfo(PersonInfo personInfo) {
         values.setName(personInfo.getName());
         valuesDao.insert(values);
+        setPersonText();
     }
 
     public void setPlace(PlaceResponse place) {

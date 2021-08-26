@@ -20,7 +20,7 @@ import static ru.labirint.sorterim.interactors.scanchains.ScanEnum.CMD_ARRANGE;
 import static ru.labirint.sorterim.interactors.scanchains.ScanEnum.CMD_GET;
 import static ru.labirint.sorterim.interactors.scanchains.ScanEnum.CMD_GET_ONE;
 
-public class ScanActions extends ru.labirint.core_tsd.interactors.ScanActions {
+public class ScanActions extends ru.labirint.core.scanchains.ScanActions {
 
     QueryHelper queryHelper;
     ValuesRepository valuesRepository;

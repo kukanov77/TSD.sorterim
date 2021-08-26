@@ -14,7 +14,7 @@ import static ru.labirint.sorterim.interactors.scanchains.ScanEnum.PLACE;
 import static ru.labirint.sorterim.interactors.scanchains.ScanEnum.STRETCH;
 
 
-public class ScanUse extends ru.labirint.core_tsd.interactors.scanchains.ScanUse {
+public class ScanUse extends ru.labirint.core.scanchains.ScanUse {
 
     ScanActions run;
 

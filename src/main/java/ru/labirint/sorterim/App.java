@@ -33,7 +33,7 @@ public class App extends ru.labirint.core_tsd.App  {
     protected void initQueryHelper() {
         valuesRepository = new ValuesRepository(getAppDatabase().getValuesDao());
         queryHelper = new QueryHelper(queryRepository, valuesRepository);
-        scanChain = new ScanUse(new ScanEnum(), new ScanActions((QueryHelper) queryHelper, valuesRepository, msg));
+        scanUse = new ScanUse(new ScanEnum(), new ScanActions((QueryHelper) queryHelper, valuesRepository, msg));
     }
 
     @Override
@@ -66,7 +66,7 @@ public class App extends ru.labirint.core_tsd.App  {
 
     @Override
     public ViewModelProvider.Factory getWorkModelFactory() {
-        return  new WorkViewModelFactory(getQueryHelper(), getValuesRepository(), msg, (ScanUse) scanChain);
+        return  new WorkViewModelFactory(getQueryHelper(), getValuesRepository(), msg, (ScanUse) scanUse);
     }
 
     // ------------------------------------------------------------------------------------------
